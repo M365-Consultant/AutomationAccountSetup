@@ -25,7 +25,7 @@ This function is starting the main menu for the Azure Automation Account Setup. 
                                                                 ©️2024 Dominik Gilgen
 
 
-               ▂▃▅▆ █ Azure Automation Account Setup 0.0.1 █ ▆▅▃▂
+               ▂▃▅▆ █ Azure Automation Account Setup 0.0.2 █ ▆▅▃▂
 
 
 
@@ -33,7 +33,7 @@ This Script helps you to setting up an Automation Account.
 
 --------------------------------------------------
 1 Microsoft Graph Module
-2 Connect to Microsoft Azure
+2 Microsoft Azure
 3 Automation Account
 4 Configure Managed Identity
 

@@ -92,22 +92,24 @@ function M365cdeMIDexo(){
     Clear-Host
     switch(Read-Host "Please select an option `
 --------------------------------------------------
-m Define Managed Identity Object ID
---------------------------------------------------
 1 Add Scope 'Exchange.ManageAsApp'
-2 Add Scope 'MailboxSettings.ReadWrite
+2 Add Scope 'MailboxSettings.ReadWrite'
+cs Add custom Exchange Scope
+--------------------------------------------------
 3 Add Role 'Exchange Recipient Administrator'
 4 Add Role 'Exchange Administrator'
+cr Add custom Exchange Role
 --------------------------------------------------
 
 b ...back to previous menu
 
 Select"){
-        m {managedid_define}
-        1 {exo_scope_ManagAsApp}
-        2 {exo_scope_MailboxSettingsReadWrite}
-        3 {exo_role_RecipientAdmin}
-        4 {exo_role_ExchangeAdmin}
+        1 {funcExchangeScopeAssignment -ManagedIdentityID $AutomationAccountMId -ExchangeScope 'Exchange.ManageAsApp'}
+        2 {funcExchangeScopeAssignment -ManagedIdentityID $AutomationAccountMId -ExchangeScope 'MailboxSettings.ReadWrite'}
+        3 {funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole 'Exchange Recipient Administrator'}
+        4 {funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole 'Exchange Administrator'}
+        cs {managedid_customexchangescope}
+        cr {managedid_customexchangerole}
         b {M365cdeMIDgraph}
         default {M365cdeMIDexo}
     }
@@ -131,10 +133,12 @@ function funcExchangeScopeAssignment() {
         else { Write-Warning "No App Role found for scope '$ExchangeScope'"}
     }
     else {
-        Write-Warning "Managed Identity Object ID is not defined! Enter the Object ID of your Managed Identity and try it again!"
-        $AutomationAccountMId = Read-Host "Managed Idenitity ObjectID"
-        M365cdeMIDexo
+        Write-Warning "`nManaged Identity Object ID is not defined!`n`nDefine it via the options s (from a existing Automation Account) or m (manually) and try it again!"
+        Start-Sleep -Seconds 5
+        M365cdeMIDgraph
     }
+    Start-Sleep -Seconds 3
+    M365cdeMIDexo
 }
 
 function funcEntraRoleAssignment() {
@@ -155,36 +159,24 @@ function funcEntraRoleAssignment() {
         else { Write-Warning "No Entra Role found for '$ExchangeScope'"}
     }
     else {
-        Write-Warning "Managed Identity Object ID is not defined! Enter the Object ID of your Managed Identity and try it again!"
-        $AutomationAccountMId = Read-Host "Managed Idenitity ObjectID"
-        M365cdeMIDexo
+        Write-Warning "`nManaged Identity Object ID is not defined!`n`nDefine it via the options s (from a existing Automation Account) or m (manually) and try it again!"
+        Start-Sleep -Seconds 5
+        M365cdeMIDgraph
     }
+    Start-Sleep -Seconds 3
+    M365cdeMIDexo
 }
 
-function exo_scope_ManagAsApp(){
-    funcExchangeScopeAssignment -ManagedIdentityID $AutomationAccountMId -ExchangeScope 'Exchange.ManageAsApp'
-        (Read-Host '
-Press Enter to continue…')
-        M365cdeMIDexo
+function managedid_customexchangescope(){
+    $ExchangeScopeCustom = Read-Host "Enter the Scope-Name (e.g. 'MailboxSettings.ReadWrite')"
+    funcGraphScopeAssignment -ManagedIdentityID $AutomationAccountMId -GraphScope $ExchangeScopeCustom
+    Start-Sleep -Seconds 3
+    M365cdeMIDexo
 }
 
-function exo_scope_MailboxSettingsReadWrite(){
-    funcExchangeScopeAssignment -ManagedIdentityID $AutomationAccountMId -ExchangeScope 'MailboxSettings.ReadWrite'
-        (Read-Host '
-Press Enter to continue…')
-        M365cdeMIDexo
-}
-
-function exo_role_RecipientAdmin(){
-    funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole 'Exchange Recipient Administrator'
-        (Read-Host '
-Press Enter to continue…')
-M365cdeMIDexo
-}
-
-function exo_role_ExchangeAdmin(){
-    funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole 'Exchange Administrator'
-        (Read-Host '
-Press Enter to continue…')
-M365cdeMIDexo
+function managedid_customexchangerole(){
+    $ExchangeRoleCustom = Read-Host "Enter the Role-Name (e.g. 'Exchange Recipient Administrator')"
+    funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole $ExchangeRoleCustom
+    Start-Sleep -Seconds 3
+    M365cdeMIDexo
 }
