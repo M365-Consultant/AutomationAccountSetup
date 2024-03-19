@@ -47,13 +47,12 @@ function M365cdeMIDexo(){
 2 Add Scope 'MailboxSettings.Read'
 3 Add Scope 'MailboxSettings.ReadWrite'
 4 Add Scope 'Mail.Read'
-5 Add Scope 'Mail.ReadBasic'
-6 Add Scope 'Mail.ReadWrite'
-7 Add Scope 'Mail.Send'
-8 Add Scope 'Calenders.Read'
-9 Add Scope 'Calenders.ReadWrite'
-10 Add Scope 'Contacts.Read'
-11 Add Scope 'Contacts.ReadWrite'
+5 Add Scope 'Mail.ReadWrite'
+6 Add Scope 'Mail.Send'
+7 Add Scope 'Calendars.Read'
+8 Add Scope 'Calendars.ReadWrite'
+9 Add Scope 'Contacts.Read'
+10 Add Scope 'Contacts.ReadWrite'
 c Add custom Exchange Scope
 --------------------------------------------------
 r1 Add Role 'Exchange Recipient Administrator'
@@ -68,13 +67,12 @@ Select"){
         2 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'MailboxSettings.Read'}
         3 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'MailboxSettings.ReadWrite'}
         4 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Mail.Read'}
-        5 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Mail.ReadBasic'}
-        6 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Mail.ReadWrite'}
-        7 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Mail.Send'}
-        8 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Calenders.Read'}
-        9 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Calenders.ReadWrite'}
-        10 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Contacts.Read'}
-        11 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Contacts.ReadWrite'}
+        5 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Mail.ReadWrite'}
+        6 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Mail.Send'}
+        7 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Calendars.Read'}
+        8 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Calendars.ReadWrite'}
+        9 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Contacts.Read'}
+        10 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope 'Contacts.ReadWrite'}
         c  {managedid_customexchangescope}
         r1 {funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole 'Exchange Recipient Administrator'}
         r2 {funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole 'Exchange Administrator'}

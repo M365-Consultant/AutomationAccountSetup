@@ -25,7 +25,7 @@ This function is starting the main menu for the Azure Automation Account Setup. 
                                                                 ©️2024 Dominik Gilgen
 
 
-               ▂▃▅▆ █ Azure Automation Account Setup 0.0.3 █ ▆▅▃▂
+               ▂▃▅▆ █ Azure Automation Account Setup 0.0.4 █ ▆▅▃▂
 
 
 

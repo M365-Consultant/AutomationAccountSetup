@@ -12,7 +12,7 @@
 RootModule = 'M365cde.AutomationAccountSetup.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.3'
+ModuleVersion = '0.0.4'
 
 # Supported PSEditions
  CompatiblePSEditions = @( 'Desktop', 'Core' )
@@ -66,6 +66,9 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @'
+v0.0.4 - 2024-03-19
+Fixed Exchange Online Scopes.
+
 v0.0.3 - 2024-03-19
 Simplyfied the code for scope assignment.
 
