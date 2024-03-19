@@ -67,10 +67,10 @@ PrivateData = @{
         # ReleaseNotes of this module
         ReleaseNotes = @'
 v0.0.3 - 2024-03-19
-Simplyfied the code for scope assignment on managed identity.
+Simplyfied the code for scope assignment.
 
 v0.0.2 - 2024-03-18
-Changed the code-assignment of exchange online scopes and roles to the managed identity.
+Changed the code for scope assignment.
 
 v0.0.1 - 2024-03-08
 Initial release of the module.

@@ -29,5 +29,9 @@ M365cdeAAASetup
 ```
 
 # Changelog
+- v0.0.3
+  - Simplyfied the code for scope assignment.
+- v0.0.2
+  - Changed the code for scope assignment.
 - v0.0.1 First release
   - First release of this script
