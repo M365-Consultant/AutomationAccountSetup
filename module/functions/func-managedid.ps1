@@ -16,13 +16,14 @@ m Manually set Managed Identity Object ID
 --------------------------------------------------
 c Custom scope
 --------------------------------------------------
-e Exchange Online configurations
+exo Exchange Online configurations
+spo Sharepoint Online configurations
 --------------------------------------------------
 
 b ...back to main menu
 
 Select"){
-        s {az_automation_set -breadcrumb M365cdeMIDgraph}
+        a {az_automation_set -breadcrumb M365cdeMIDgraph}
         m {managedid_define}
         1 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'graph' -Scope 'User.Read.All'}
         2 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'graph' -Scope 'User.ReadWrite.All'}
@@ -32,8 +33,10 @@ Select"){
         6 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'graph' -Scope 'AuditLog.Read.All'}
         7 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'graph' -Scope 'Policy.ReadWrite.ConditionalAccess'}
         8 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'graph' -Scope 'Mail.Send'}
+        9 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'spo' -Scope 'Sites.FullControl.All'}
         c {managedid_custom}
-        e {M365cdeMIDexo}
+        exo {M365cdeMIDexo}
+        spo {M365cdeMIDspo}
         b {M365cdeAAASetup}
         default {M365cdeMIDgraph}
     }
@@ -82,6 +85,34 @@ Select"){
     }
 }
 
+function M365cdeMIDspo(){
+    Clear-Host
+    switch(Read-Host "Please select an option `
+--------------------------------------------------
+1 Add Scope 'Sites.FullControl.All'
+2 Add Scope 'Sites.Read.All'
+3 Add Scope 'Sites.ReadWrite.All'
+c Add custom Sharepoint Scope
+--------------------------------------------------
+r1 Add Role 'SharePoint Administrator'
+rc Add custom Sharepoint Role
+--------------------------------------------------
+
+b ...back to previous menu
+
+Select"){
+        1 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'spo' -Scope 'Sites.FullControl.All'}
+        2 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'spo' -Scope 'Sites.Read.All'}
+        3 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'spo' -Scope 'Sites.ReadWrite.All'}
+        c  {managedid_customsharepointscope}
+        r1 {funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole 'SharePoint Administrator'}
+        rc {managedid_customsharepointrole}
+        b {M365cdeMIDgraph}
+        default {M365cdeMIDspo}
+    }
+}
+
+
 #Function for Scope assignment
 function funcScopeAssignment() {
     param (
@@ -93,6 +124,7 @@ function funcScopeAssignment() {
     $appIds = @{
         "graph" = '00000003-0000-0000-c000-000000000000'
         "exo"   = '00000002-0000-0ff1-ce00-000000000000'
+        "spo"   = '00000003-0000-0ff1-ce00-000000000000'
     }
 
     $appId = $appIds[$target]
@@ -121,6 +153,7 @@ function funcScopeAssignment() {
     Start-Sleep -Seconds 3
     if ($target -eq "graph") {M365cdeMIDgraph}
     elseif ($target -eq "exo") {M365cdeMIDexo}
+    elseif ($target -eq "spo") {M365cdeMIDspo}
 }
 
 #Function for Managed Identity Object ID definition
@@ -168,7 +201,8 @@ function funcEntraRoleAssignment() {
     M365cdeMIDexo
 }
 
-#Function for Custom Role assignment EXO
+
+#Function for Custom Scope assignment EXO
 function managedid_customexchangescope(){
     $ExchangeScopeCustom = Read-Host "Enter the Scope-Name (e.g. 'MailboxSettings.ReadWrite')"
     funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'exo' -Scope $ExchangeScopeCustom
@@ -182,4 +216,20 @@ function managedid_customexchangerole(){
     funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole $ExchangeRoleCustom
     Start-Sleep -Seconds 3
     M365cdeMIDexo
+}
+
+#Function for Custom Role assignment SPO
+function managedid_customsharepointscope(){
+    $SharepointScopeCustom = Read-Host "Enter the Scope-Name (e.g. 'Sites.Manage.All')"
+    funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'spo' -Scope $SharepointScopeCustom
+    Start-Sleep -Seconds 3
+    M365cdeMIDspo
+}
+
+#Function for Custom Role assignment SPO
+function managedid_customsharepointrole(){
+    $SharepointRoleCustom = Read-Host "Enter the Role-Name (e.g. 'SharePoint Embedded Administrator')"
+    funcEntraRoleAssignment -ManagedIdentityID $AutomationAccountMId -EntraRole $SharepointRoleCustom
+    Start-Sleep -Seconds 3
+    M365cdeMIDspo
 }

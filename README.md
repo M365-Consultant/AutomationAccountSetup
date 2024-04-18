@@ -29,6 +29,8 @@ M365cdeAAASetup
 ```
 
 # Changelog
+- v0.0.5
+  - Implemented SharePoint scope assignment.
 - v0.0.4
   - Fixed Exchange Online Scopes.
 - v0.0.3

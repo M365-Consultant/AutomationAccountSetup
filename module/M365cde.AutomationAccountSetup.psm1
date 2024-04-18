@@ -1,4 +1,4 @@
-﻿#Including all functions
+﻿﻿#Including all functions
         # Get all PS1 files from the Functions folder
         $functionFiles = Get-ChildItem -Path "$PSScriptRoot\Functions\*.ps1"
 
@@ -25,7 +25,7 @@ This function is starting the main menu for the Azure Automation Account Setup. 
                                                                 ©️2024 Dominik Gilgen
 
 
-               ▂▃▅▆ █ Azure Automation Account Setup 0.0.4 █ ▆▅▃▂
+               ▂▃▅▆ █ Azure Automation Account Setup 0.0.5 █ ▆▅▃▂
 
 
 
@@ -33,10 +33,10 @@ This Script helps you to setting up an Automation Account.
 
 --------------------------------------------------
 1 Microsoft Graph Module
-2 Microsoft Azure
+2 Microsoft Azure Module
+--------------------------------------------------
 3 Automation Account
 4 Configure Managed Identity
-
 --------------------------------------------------
 
 q Exit
