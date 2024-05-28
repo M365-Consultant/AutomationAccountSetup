@@ -12,7 +12,7 @@
 RootModule = 'M365cde.AutomationAccountSetup.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.5'
+ModuleVersion = '0.0.6'
 
 # Supported PSEditions
  CompatiblePSEditions = @( 'Desktop', 'Core' )
@@ -66,6 +66,10 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @'
+v0.0.6 - 2024-05-28
+Automation Account Function: Added a new feature to update all modules at once. Added a new feature to install modules from the PS Gallery. Explicitly cast the menu choice to int. Multiple code improvements.
+Managed Identity Function: Fixed a wrong link within the menu.
+
 v0.0.5 - 2024-04-17
 Implemented SharePoint scope assignment.
 

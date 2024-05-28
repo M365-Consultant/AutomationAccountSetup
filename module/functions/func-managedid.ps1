@@ -23,7 +23,7 @@ spo Sharepoint Online configurations
 b ...back to main menu
 
 Select"){
-        a {az_automation_set -breadcrumb M365cdeMIDgraph}
+        s {az_automation_set -breadcrumb M365cdeMIDgraph}
         m {managedid_define}
         1 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'graph' -Scope 'User.Read.All'}
         2 {funcScopeAssignment -ManagedIdentityID $AutomationAccountMId -target 'graph' -Scope 'User.ReadWrite.All'}
