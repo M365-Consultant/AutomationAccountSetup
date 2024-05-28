@@ -29,6 +29,14 @@ M365cdeAAASetup
 ```
 
 # Changelog
+- v0.0.6
+  - Automation Account Function
+    - Added a new feature to update all modules at once.
+    - Added a new feature to install modules from the PS Gallery.
+    - Explicitly cast the menu choice to int (bugfix).
+    - Multiple code improvements.
+  - Managed Identity Function
+    - Fixed a wrong link within the menu.
 - v0.0.5
   - Implemented SharePoint scope assignment.
 - v0.0.4
