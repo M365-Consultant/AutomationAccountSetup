@@ -12,7 +12,7 @@
 RootModule = 'M365cde.AutomationAccountSetup.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.6'
+ModuleVersion = '0.1.0'
 
 # Supported PSEditions
  CompatiblePSEditions = @( 'Desktop', 'Core' )
@@ -30,13 +30,13 @@ CompanyName = 'Dominik Gilgen (Personal)'
 Copyright = '(c) 2024 Dominik Gilgen. All rights reserved.'
 
 # Description of the functionality provided by this module
- Description = 'This module helps you set up an Azure Automation Account.'
+Description = 'This module helps you set up an Azure Automation Account.'
 
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '5.1'
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('M365cdeAAASetup','M365cdeGraphModule','M365cdeAzModule','statusInfo')
+FunctionsToExport = @('M365cdeAAASetup')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -66,6 +66,12 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @'
+v0.1.0 - 2024-08-21
+Measter: Added a new feature for handling the Maester Test Framework (beta).
+Automation Account Function: Changed the function to use a filter parameter for the module status and update functions. Added breadcrumb-support, required for the new Maester feature. Added support for installing a specific version of a module. Fixed the remove-function when selecting all modules. Fixed a bug within the module selection, when there was only one module installed
+Managed Identity Function: Added a function to remove permissions.
+Some code improvements and cosmetic changes.
+
 v0.0.6 - 2024-05-28
 Automation Account Function: Added a new feature to update all modules at once. Added a new feature to install modules from the PS Gallery. Explicitly cast the menu choice to int. Multiple code improvements.
 Managed Identity Function: Fixed a wrong link within the menu.

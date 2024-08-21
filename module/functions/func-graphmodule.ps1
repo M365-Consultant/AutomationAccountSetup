@@ -1,21 +1,23 @@
 ﻿function M365cdeGraphModule(){
     Clear-Host
     switch(Read-Host "Please select an option `
---------------------------------------------------
+----------------- Stable Module ------------------
 1 Install Microsoft Graph module (CurrentUser)
 2 Check installed version of Microsoft Graph module
 3 Update Microsoft Graph module (CurrentUser)
---------------------------------------------------
+
+----------------- Beta Module --------------------
 1beta Install Microsoft Graph Beta module (CurrentUser)
 2beta Check installed version of Microsoft Graph Beta module
 3beta Update Microsoft Graph Beta module (CurrentUser)
---------------------------------------------------
+
+------------------ Connection --------------------
 4 Connect to Microsoft Graph
 5 Disconnect from Microsoft Graph
 6 Show connection state
 7 Show active scopes
---------------------------------------------------
 
+--------------------------------------------------
 b ...back to main menu
 
 Select"){

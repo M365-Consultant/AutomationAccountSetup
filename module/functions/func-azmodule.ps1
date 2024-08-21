@@ -1,16 +1,17 @@
 ﻿function M365cdeAzModule(){
     Clear-Host
     switch(Read-Host "Please select an option `
---------------------------------------------------
+----------------- Stable Module ------------------
 1 Install Microsoft Azure Az module (CurrentUser)
 2 Check installed version of Microsoft Azure Az module
 3 Update Microsoft Azure Az module
---------------------------------------------------
+
+------------------ Connection --------------------
 4 Connect to Microsoft Azure
 5 Disconnect from Microsoft Azure
 6 Show connection state
---------------------------------------------------
 
+--------------------------------------------------
 b ...back to main menu
 
 Select"){
